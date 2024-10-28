@@ -21,7 +21,7 @@ function updateTotalPrice() {
     const quantity = parseInt(quantityInput.value);
     const totalPrice = productPrice * quantity;
     
-    totalPriceElement.textContent = totalPrice.toFixed(2);
+    totalPriceElement.textContent = totalPrice;
 }
 
 productSelector.addEventListener('change', updateTotalPrice);
@@ -29,3 +29,16 @@ quantityInput.addEventListener('input', updateTotalPrice);
 
 updateTotalPrice();
 
+// Task 4
+
+const placeOrderButton = document.getElementById('place-order');
+const orderSummary = document.getElementById('order-summary');
+
+// To be able to place the order.
+placeOrderButton.addEventListener('click', function() {
+    const selectedProduct = productSelector.options[productSelector.selectedIndex].text;
+    const quantity = quantityInput.value;
+    const totalPrice = totalPriceElement.textContent;
+    
+    orderSummary.textContent = `You ordered ${quantity} of ${selectedProduct}. Total price: $${totalPrice}`;
+});
